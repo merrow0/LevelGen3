@@ -22,6 +22,7 @@ func _ready():
 	#$Camera2D.position = Vector2(map_size.x * tile_size / 2, map_size.y * tile_size / 2)
 
 func _process(delta):
+	# For debugging
 	if (Input.is_action_just_pressed("ui_up")):
 		make_map()
 
