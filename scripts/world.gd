@@ -3,7 +3,7 @@ extends Node2D
 const GEN_STEPS = 800
 
 onready var map = get_node("TileMap")
-onready var world_size = get_viewport_rect().size
+onready var world_size = get_viewport_rect().size * 2
 onready var tile_size = map.cell_size
 
 const player = preload("res://scenes/player.tscn")
@@ -17,9 +17,9 @@ func _ready():
 		inst_player.ctrl_nr = joy_id
 		
 		add_child(inst_player)
+		$Kameramann.players.push_back(inst_player);
 	
-	#$Camera2D.make_current()
-	#$Camera2D.position = Vector2(map_size.x * tile_size / 2, map_size.y * tile_size / 2)
+	$Kameramann.position = Vector2(world_size.x / 2, world_size.y / 2)
 
 func _process(delta):
 	if (Input.is_action_just_pressed("ui_up")):

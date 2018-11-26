@@ -5,7 +5,6 @@ const DEADZONE = 0.3
 var move_speed = 150
 var ctrl_nr = -1
 
-
 func _ready():
 	pass
 
