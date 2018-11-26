@@ -11,6 +11,7 @@ const player = preload("res://scenes/player.tscn")
 func _ready():
 	make_map()
 	
+	
 	for joy_id in Input.get_connected_joypads():
 		var inst_player = player.instance()
 		inst_player.position = Vector2(world_size.x / 2 + (tile_size.x / 2), world_size.y / 2 + (tile_size.y / 2))
@@ -18,6 +19,8 @@ func _ready():
 		
 		add_child(inst_player)
 		$Kameramann.players.push_back(inst_player);
+	
+	#find_start_pos()
 	
 	$Kameramann.position = Vector2(world_size.x / 2, world_size.y / 2)
 
@@ -85,4 +88,15 @@ func remove_dead_ends():
 				if (map.get_cell(x, y) == -1 && found_floors == 1):
 					map.set_cell(x, y, 0)
 					count_dead_end += 1
+
+func find_start_pos():
+	var start_pos_found = false
+	while (!start_pos_found):
+		var start_x = randi(world_size.x / tile_size.x)
+		var start_y = randi(world_size.y / tile_size.y)
 	
+		if (map.get_cell(start_x, start_y) == -1):
+			start_pos_found = true
+			for player in $Kameramann.players:
+				player.position.x = start_x * tile_size.x
+				player.position.y = start_y * tile_size.y
