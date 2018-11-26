@@ -22,6 +22,7 @@ func _ready():
 	$Kameramann.position = Vector2(world_size.x / 2, world_size.y / 2)
 
 func _process(delta):
+	# For debugging
 	if (Input.is_action_just_pressed("ui_up")):
 		make_map()
 
